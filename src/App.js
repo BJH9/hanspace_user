@@ -1,15 +1,30 @@
-import Router from './Router';
-import { useEffect } from 'react';
-import GoogleLogin from './components/GoogleLogin';
+// routes
+import Router from './routes';
+// theme
+import ThemeProvider from './theme';
+// locales
+import ThemeLocalization from './locales';
+// components
+import { StyledChart } from './components/chart';
+import SnackbarProvider from './components/snackbar';
+import { ThemeSettings } from './components/settings';
+import { MotionLazyContainer } from './components/animate';
 
-function App() {
+// ----------------------------------------------------------------------
+
+export default function App() {
   return (
-    <>
-      <GoogleLogin />
-      <div className="App">HanSpace - User</div>
-      <Router />
-    </>
+    <MotionLazyContainer>
+      <ThemeProvider>
+        <ThemeSettings>
+          <ThemeLocalization>
+            <SnackbarProvider>
+              <StyledChart />
+              <Router />
+            </SnackbarProvider>
+          </ThemeLocalization>
+        </ThemeSettings>
+      </ThemeProvider>
+    </MotionLazyContainer>
   );
 }
-
-export default App;
